@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: black;
+        }
+        
+        .heading{
+            text-align: center;
+            margin-top: 5vh;
+            color: skyblue;
+        }
+        .main{
+            height: 70vh;
+            width: 30%;
+            margin: 5vh auto;
+            /* border: 1px solid; */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: linear-gradient(to right,black,skyblue);
+            /* display: none; */
+        }
+        .block{
+            height: 30%;
+            width: 33%;
+            margin: 0;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            font-size: 60px;
+            padding: 10px ;
+            font-family: cursive;
+            color: white;
+        }
+        .main :nth-of-type(1){
+            border-right:1px solid ;
+            border-bottom: 1px solid;
+
+        }
+        .main :nth-of-type(2){
+            border-right:1px solid ;
+            border-bottom: 1px solid;
+
+        }
+        .main :nth-of-type(3){
+            border-bottom: 1px solid;
+
+
+        }
+        .main :nth-of-type(4){
+            border-right:1px solid ;
+            border-bottom: 1px solid;
+
+        }
+        .main :nth-of-type(5){
+            border-right:1px solid ;
+            border-bottom: 1px solid;
+
+        }
+        .main :nth-of-type(6){
+            border-bottom: 1px solid;
+
+            
+        } .main :nth-of-type(1){
+            border-right:1px solid ;
+            border-bottom: 1px solid;
+
+        }
+        .main :nth-of-type(7){
+            border-right:1px solid ;
+        }
+        .main :nth-of-type(8){
+            border-right:1px solid ;
+        }
+        .main :nth-of-type(2){
+            border-right:1px solid ;
+        }
+        .image{
+            width: 101%;
+            height: 101%;
+            border: none;
+        }
+        .message{
+            text-align: center;
+            color: skyblue;
+            /* position: absolute; */
+            margin-top: 15%;
+            font-size: 80px;
+            text-transform: uppercase;
+            display: none;
+    
+
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1 class="heading">Tik Tak Game</h1>
+    <div class="main">
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+
+    </div>
+    <h1 class="message">asdasd</h1>
+
+    <script>
+        var count=0
+        var arr  = [
+         [0, 1, 2],[3, 4, 5],[6, 7, 8],[0, 3, 6],[1, 4, 7],[2, 5, 8],
+         [0, 4, 8],[2, 4, 6]         
+      ];
+      $(".block").click(function(){
+            var index=$(this).index()
+            if( $(".block").eq(index).html()== ""){
+                $(".block").eq(index).html("0")
+                      count++
+                    }
+           
+                    if(count==8){
+                $(".main").css({"display":"none"})
+                $(".message").css({"display":"block"})
+                $(".message").html("draw")
+
+               }
+                comuterturn()
+                endgame()
+           
+        })
+        function endgame(){
+            $(arr).each(i=>{
+                var arrFirst = arr[i][0];
+            var arrSecond = arr[i][1];
+            var arrThird = arr[i][2];
+            console.log(arrFirst,"log");
+             if($(".block").eq(arrFirst).html()== "" && $(".block").eq(arrSecond).html()=="" && $(".block").eq(arrThird).html()==""){
+               console.log("empty");
+            }
+            else if ($(".block").eq(arrFirst).html() ===$(".block").eq(arrSecond).html()
+             && $(".block").eq(arrFirst).html() === $(".block").eq(arrThird).html()){
+               if($(".block").eq(arrFirst).html()== "0"){
+                $(".main").css({"display":"none"})
+                $(".message").css({"display":"block"})
+                $(".message").html("O win")
+               }
+               else{
+                $(".main").css({"display":"none"})
+                $(".message").css({"display":"block"})
+                $(".message").html("X win")
+               }
+               
+              
+            }
+            })
+        }
+       
+         function comuterturn(){    
+            var rand=Math.floor(Math.random()* 9)
+                if($(".block").eq(rand).html()!== ""){
+            comuterturn();
+         }
+         else{
+            $(".block").eq(rand).html("X")
+            count++
+            console.log(count);
+         
+         }
+         
+         }
+    </script>
+    
+</body>
+</html>
